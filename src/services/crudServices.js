@@ -73,8 +73,13 @@ let updateUserData = (data) => {
                 user.lastName = data.lName;
                 user.address = data.address;
 
-                await user.save();
-
+                await db.User.update({
+                    firstName: data.fName,
+                    lastName: data.lName,
+                    address: data.address
+                }, {
+                    where: { id: data.id },
+                })
                 let allUsers = await db.User.findAll();
                 resolve(allUsers);
             } else {
@@ -92,7 +97,9 @@ let DelUserData = async (userId) => {
                 where: { id: userId }
             })
             if (user) {
-                user.destroy();
+                await db.User.destroy({
+                    where: { id: user.id }
+                });
                 resolve();
             } else {
                 resolve();

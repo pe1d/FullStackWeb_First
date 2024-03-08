@@ -5,7 +5,6 @@ import crudServices from "../services/crudServices";
 let getHomePage = async (req, res) => {
     try {
         let data = await db.User.findAll();
-        console.log('--------------', data)
         return res.render("homePage.ejs", {
             data: JSON.stringify(data)
         });
@@ -21,7 +20,6 @@ let getCRUD = (req, res) => {
 }
 let postCRUD = async (req, res) => {
     let mess = await crudServices.createNewUser(req.body);
-    console.log(mess);
     let allUsers = await db.User.findAll();
     return res.render('display-crud.ejs', {
         dataTable: allUsers,
