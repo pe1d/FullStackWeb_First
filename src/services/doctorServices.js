@@ -54,7 +54,6 @@ let getAllDoctorEditDesApi = () => {
 let postInfoDoctorApi = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-
             if (!data.selectedDoctor.value || !data.contentHtml || !data.contentMarkdown || !data.actions) {
                 resolve({
                     errCode: -1,
@@ -69,7 +68,7 @@ let postInfoDoctorApi = (data) => {
                         description: data.description
                     })
                 } else {
-                    console.log(data);
+                    // console.log(data);
                     await db.Markdown.update({
                         contentMarkdown: data.contentMarkdown,
                         contentHtml: data.contentHtml,
